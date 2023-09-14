@@ -1,6 +1,7 @@
 import 'package:animal_connections_demo/core/Responsive/responsive.dart';
 import 'package:animal_connections_demo/presentation/views/Components/selectable_item.dart';
 import 'package:animal_connections_demo/presentation/views/LandingPage/Models/animals.dart';
+import 'package:animal_connections_demo/presentation/views/LandingPage/pages/second_screen.dart';
 import 'package:animal_connections_demo/presentation/views/LandingPage/widgets/animal_tile.dart';
 
 import 'package:flutter/material.dart';
@@ -49,11 +50,11 @@ class _LandingPageState extends State<LandingPage> {
           //! Bottom of the stack
           Positioned.fill(
             child: Image.asset(
-              "assets/images/junle_one.jpg",
+              "assets/images/jungle_two.jpg",
               fit: BoxFit.cover,
             ),
           ),
-          //! First Layer
+          //! Second Layer
           Align(
             alignment: const Alignment(0, -1),
             child: Container(
@@ -116,7 +117,15 @@ class _LandingPageState extends State<LandingPage> {
                                     child: AnimalTile(
                                       animalName: e.data.name!,
                                       imagePath: e.data.imagePath!,
-                                      onTap: () {},
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                SecondScreenPage(),
+                                          ),
+                                        );
+                                      },
                                       height: constraints.maxHeight * 0.5,
                                       transform: e.isSelected
                                           ? (Matrix4.identity()
@@ -135,10 +144,10 @@ class _LandingPageState extends State<LandingPage> {
                                             if (event.playing) {
                                               return;
                                             }
-                                            await audioPlayer.play();
-                                            await audioPlayer
-                                                .setLoopMode(LoopMode.all);
-                                            await audioPlayer.setVolume(0.3);
+                                            // await audioPlayer.play();
+                                            // await audioPlayer
+                                            //     .setLoopMode(LoopMode.all);
+                                            // await audioPlayer.setVolume(0.3);
                                           },
                                         );
                                         setState(() {
@@ -160,7 +169,14 @@ class _LandingPageState extends State<LandingPage> {
                               return AnimalTile(
                                 animalName: e.data.name!,
                                 imagePath: e.data.imagePath!,
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => SecondScreenPage(),
+                                    ),
+                                  );
+                                },
                                 height: constraints.maxHeight * 0.9,
                                 transform: e.isSelected
                                     ? (Matrix4.identity()
@@ -179,10 +195,10 @@ class _LandingPageState extends State<LandingPage> {
                                       if (event.playing) {
                                         return;
                                       }
-                                      await audioPlayer.play();
-                                      await audioPlayer
-                                          .setLoopMode(LoopMode.all);
-                                      await audioPlayer.setVolume(0.3);
+                                      // await audioPlayer.play();
+                                      // await audioPlayer
+                                      //     .setLoopMode(LoopMode.all);
+                                      // await audioPlayer.setVolume(0.3);
                                     },
                                   );
                                   setState(() {
@@ -199,7 +215,30 @@ class _LandingPageState extends State<LandingPage> {
                 },
               ),
             ),
-          )
+          ),
+          //! Fourth Layer
+          Align(
+            alignment: const Alignment(.75, .7),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SecondScreenPage(),
+                  ),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+              ),
+              child: const Text(
+                "Click Me!",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

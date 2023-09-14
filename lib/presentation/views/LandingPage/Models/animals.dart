@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 abstract class Animals {
   String? name;
   String? imagePath;
+  // static bool canMove = false;
   Animals({
     this.name,
     this.imagePath,
