@@ -57,7 +57,9 @@ class _LandingPageState extends State<LandingPage> {
           Align(
             alignment: const Alignment(0, -1),
             child: Container(
-              height: size.height * 0.15,
+              height: Responsive.isMobile(context)
+                  ? size.height * 0.1
+                  : size.height * 0.15,
               width: size.width * 0.4,
               // padding: const EdgeInsets.all(30),
               decoration: BoxDecoration(
@@ -80,7 +82,7 @@ class _LandingPageState extends State<LandingPage> {
                   style: TextStyle(
                     fontSize: switch (size.width) {
                       _ when Responsive.isDesktop(context) => 25,
-                      _ when Responsive.isMobile(context) => 18,
+                      _ when Responsive.isMobile(context) => 15,
                       _ when Responsive.isTablet(context) => 20,
                       _ => 25,
                     },
@@ -92,10 +94,12 @@ class _LandingPageState extends State<LandingPage> {
           ),
           //! Third Layer
           Align(
-            alignment: Alignment.center,
+            alignment: Responsive.isMobile(context)
+                ? const Alignment(0, 0.5)
+                : Alignment.center,
             child: SizedBox(
               height: Responsive.isMobile(context)
-                  ? size.height * 0.7
+                  ? size.height * 0.8
                   : size.height * 0.5,
               child: LayoutBuilder(
                 builder: (context, constraints) {

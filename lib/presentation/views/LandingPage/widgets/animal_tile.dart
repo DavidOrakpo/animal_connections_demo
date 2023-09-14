@@ -54,7 +54,7 @@ class AnimalTile extends StatelessWidget {
                       animalName,
                       style: const TextStyle(
                         color: Colors.white,
-                        // fontSize: 20,
+                        fontSize: 12,
                       ),
                     ),
                   )
