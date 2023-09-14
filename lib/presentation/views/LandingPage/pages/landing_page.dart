@@ -4,6 +4,7 @@ import 'package:animal_connections_demo/presentation/views/LandingPage/Models/an
 import 'package:animal_connections_demo/presentation/views/LandingPage/widgets/animal_tile.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:just_audio/just_audio.dart';
 
 class LandingPage extends StatefulWidget {
@@ -99,42 +100,45 @@ class _LandingPageState extends State<LandingPage> {
                   return Padding(
                     padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: selectableListOfAnimals.map((e) {
-                        return AnimalTile(
-                          animalName: e.data.name!,
-                          imagePath: e.data.imagePath!,
-                          onTap: () {},
-                          height: constraints.maxHeight * 0.9,
-                          transform: e.isSelected
-                              ? (Matrix4.identity()
-                                ..scale(
-                                  1.05,
-                                  1.05,
-                                  // 1.05,
-                                ))
-                              : Matrix4.identity(),
-                          width: size.width * 0.24,
-                          imageHeight: (constraints.maxHeight * 0.9) * 0.75,
-                          onHover: (value) {
-                            audioPlayer.playerStateStream.listen(
-                              (event) async {
-                                if (event.playing) {
-                                  return;
-                                }
-                                // await audioPlayer.play();
-                                // await audioPlayer.setLoopMode(LoopMode.one);
-                                // await audioPlayer.setVolume(0.3);
-                              },
-                            );
-                            setState(() {
-                              e.isSelected = value;
-                            });
-                          },
-                        );
-                      }).toList(),
-                    ),
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: selectableListOfAnimals.map((e) {
+                          return AnimalTile(
+                            animalName: e.data.name!,
+                            imagePath: e.data.imagePath!,
+                            onTap: () {},
+                            height: constraints.maxHeight * 0.9,
+                            transform: e.isSelected
+                                ? (Matrix4.identity()
+                                  ..scale(
+                                    1.05,
+                                    1.05,
+                                    // 1.05,
+                                  ))
+                                : Matrix4.identity(),
+                            width: size.width * 0.24,
+                            imageHeight: (constraints.maxHeight * 0.9) * 0.75,
+                            onHover: (value) {
+                              audioPlayer.playerStateStream.listen(
+                                (event) async {
+                                  if (event.playing) {
+                                    return;
+                                  }
+                                  await audioPlayer.play();
+                                  await audioPlayer.setLoopMode(LoopMode.all);
+                                  await audioPlayer.setVolume(0.3);
+                                },
+                              );
+                              setState(() {
+                                e.isSelected = value;
+                              });
+                            },
+                          );
+                        }).toList()
+                        // .animate(interval: .250.seconds)
+                        // .fade()
+                        // .slideY(),
+                        ),
                   );
                 },
               ),
