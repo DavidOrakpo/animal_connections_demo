@@ -94,51 +94,103 @@ class _LandingPageState extends State<LandingPage> {
           Align(
             alignment: Alignment.center,
             child: SizedBox(
-              height: size.height * 0.5,
+              height: Responsive.isMobile(context)
+                  ? size.height * 0.7
+                  : size.height * 0.5,
               child: LayoutBuilder(
                 builder: (context, constraints) {
                   return Padding(
                     padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: selectableListOfAnimals.map((e) {
-                          return AnimalTile(
-                            animalName: e.data.name!,
-                            imagePath: e.data.imagePath!,
-                            onTap: () {},
-                            height: constraints.maxHeight * 0.9,
-                            transform: e.isSelected
-                                ? (Matrix4.identity()
-                                  ..scale(
-                                    1.05,
-                                    1.05,
-                                    // 1.05,
-                                  ))
-                                : Matrix4.identity(),
-                            width: size.width * 0.24,
-                            imageHeight: (constraints.maxHeight * 0.9) * 0.75,
-                            onHover: (value) {
-                              audioPlayer.playerStateStream.listen(
-                                (event) async {
-                                  if (event.playing) {
-                                    return;
-                                  }
-                                  await audioPlayer.play();
-                                  await audioPlayer.setLoopMode(LoopMode.all);
-                                  await audioPlayer.setVolume(0.3);
+                    child: Responsive.isMobile(context)
+                        ? SingleChildScrollView(
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: selectableListOfAnimals.map((e) {
+                                  return Padding(
+                                    padding: const EdgeInsets.only(bottom: 20),
+                                    child: AnimalTile(
+                                      animalName: e.data.name!,
+                                      imagePath: e.data.imagePath!,
+                                      onTap: () {},
+                                      height: constraints.maxHeight * 0.5,
+                                      transform: e.isSelected
+                                          ? (Matrix4.identity()
+                                            ..scale(
+                                              1.05,
+                                              1.05,
+                                              // 1.05,
+                                            ))
+                                          : Matrix4.identity(),
+                                      width: double.infinity,
+                                      imageHeight:
+                                          (constraints.maxHeight * 0.9) * 0.75,
+                                      onHover: (value) {
+                                        audioPlayer.playerStateStream.listen(
+                                          (event) async {
+                                            if (event.playing) {
+                                              return;
+                                            }
+                                            await audioPlayer.play();
+                                            await audioPlayer
+                                                .setLoopMode(LoopMode.all);
+                                            await audioPlayer.setVolume(0.3);
+                                          },
+                                        );
+                                        setState(() {
+                                          e.isSelected = value;
+                                        });
+                                      },
+                                    ),
+                                  );
+                                }).toList()
+                                // .animate(interval: .250.seconds)
+                                // .fade()
+                                // .slideY(),
+                                ),
+                          )
+                        : Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: selectableListOfAnimals.map((e) {
+                              return AnimalTile(
+                                animalName: e.data.name!,
+                                imagePath: e.data.imagePath!,
+                                onTap: () {},
+                                height: constraints.maxHeight * 0.9,
+                                transform: e.isSelected
+                                    ? (Matrix4.identity()
+                                      ..scale(
+                                        1.05,
+                                        1.05,
+                                        // 1.05,
+                                      ))
+                                    : Matrix4.identity(),
+                                width: size.width * 0.24,
+                                imageHeight:
+                                    (constraints.maxHeight * 0.9) * 0.75,
+                                onHover: (value) {
+                                  audioPlayer.playerStateStream.listen(
+                                    (event) async {
+                                      if (event.playing) {
+                                        return;
+                                      }
+                                      await audioPlayer.play();
+                                      await audioPlayer
+                                          .setLoopMode(LoopMode.all);
+                                      await audioPlayer.setVolume(0.3);
+                                    },
+                                  );
+                                  setState(() {
+                                    e.isSelected = value;
+                                  });
                                 },
                               );
-                              setState(() {
-                                e.isSelected = value;
-                              });
-                            },
-                          );
-                        }).toList()
-                        // .animate(interval: .250.seconds)
-                        // .fade()
-                        // .slideY(),
-                        ),
+                            }).toList()
+                            // .animate(interval: .250.seconds)
+                            // .fade()
+                            // .slideY(),
+                            ),
                   );
                 },
               ),
