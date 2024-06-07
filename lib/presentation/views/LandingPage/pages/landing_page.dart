@@ -2,6 +2,7 @@ import 'package:animal_connections_demo/core/Responsive/responsive.dart';
 import 'package:animal_connections_demo/presentation/views/Components/selectable_item.dart';
 import 'package:animal_connections_demo/presentation/views/LandingPage/Models/animals.dart';
 import 'package:animal_connections_demo/presentation/views/LandingPage/pages/second_screen.dart';
+import 'package:animal_connections_demo/presentation/views/MindBuilder/Pages/landing_page_mbuilder.dart';
 import 'package:animal_connections_demo/presentation/views/LandingPage/widgets/animal_tile.dart';
 
 import 'package:flutter/material.dart';
@@ -144,10 +145,10 @@ class _LandingPageState extends State<LandingPage> {
                                             if (event.playing) {
                                               return;
                                             }
-                                            // await audioPlayer.play();
-                                            // await audioPlayer
-                                            //     .setLoopMode(LoopMode.all);
-                                            // await audioPlayer.setVolume(0.3);
+                                            await audioPlayer.play();
+                                            await audioPlayer
+                                                .setLoopMode(LoopMode.all);
+                                            await audioPlayer.setVolume(0.3);
                                           },
                                         );
                                         setState(() {
@@ -195,10 +196,10 @@ class _LandingPageState extends State<LandingPage> {
                                       if (event.playing) {
                                         return;
                                       }
-                                      // await audioPlayer.play();
-                                      // await audioPlayer
-                                      //     .setLoopMode(LoopMode.all);
-                                      // await audioPlayer.setVolume(0.3);
+                                      await audioPlayer.play();
+                                      await audioPlayer
+                                          .setLoopMode(LoopMode.all);
+                                      await audioPlayer.setVolume(0.3);
                                     },
                                   );
                                   setState(() {
@@ -217,28 +218,28 @@ class _LandingPageState extends State<LandingPage> {
             ),
           ),
           //! Fourth Layer
-          Align(
-            alignment: const Alignment(.75, .7),
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SecondScreenPage(),
-                  ),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
-              ),
-              child: const Text(
-                "Click Me!",
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
+          // Align(
+          //   alignment: const Alignment(.75, .7),
+          //   child: ElevatedButton(
+          //     onPressed: () {
+          //       Navigator.push(
+          //         context,
+          //         MaterialPageRoute(
+          //           builder: (context) => SecondScreenPage(),
+          //         ),
+          //       );
+          //     },
+          //     style: ElevatedButton.styleFrom(
+          //       backgroundColor: Colors.green,
+          //     ),
+          //     child: const Text(
+          //       "Click Me!",
+          //       style: TextStyle(
+          //         color: Colors.white,
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );

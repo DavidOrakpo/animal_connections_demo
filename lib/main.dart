@@ -1,9 +1,15 @@
 import 'package:animal_connections_demo/presentation/views/LandingPage/pages/landing_page.dart';
+import 'package:animal_connections_demo/presentation/views/MindBuilder/Pages/landing_page_mbuilder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -16,7 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         textTheme: GoogleFonts.pressStart2pTextTheme(),
         useMaterial3: true,
       ),

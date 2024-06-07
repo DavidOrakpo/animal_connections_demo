@@ -1,3 +1,5 @@
+import 'package:animal_connections_demo/presentation/views/LandingPage/widgets/animal_item.dart';
+import 'package:animal_connections_demo/presentation/views/LandingPage/widgets/blurred_container.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
@@ -26,61 +28,44 @@ class SecondScreenPage extends StatelessWidget {
             Positioned.fill(
               child: Image.asset(
                 "assets/images/jungle_two.jpg",
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
               ),
             ),
-            Align(
-              alignment: const Alignment(0.9, 0.65),
-              child: Image.asset(
-                "assets/images/reptile Background Removed.png",
-                scale: 14,
-              ),
+            AnimalItem(
+              key: UniqueKey(),
+              imageName: "assets/images/reptile Background Removed.png",
+              imageAlignment: const Alignment(0.9, 0.65),
+              scale: 14,
             ),
             Align(
               alignment: const Alignment(-0.9, -0.5),
               child: Transform.rotate(
                 angle: -pi / 40,
-                child: Image.asset(
-                  "assets/images/second_slide/monkey_one.png",
-                  scale: 2.5,
+                child: MouseRegion(
+                  cursor: SystemMouseCursors.zoomIn,
+                  child: Image.asset(
+                    "assets/images/second_slide/monkey_one.png",
+                    scale: 2.5,
+                  ),
                 ),
               ),
             ),
-            Align(
-              alignment: const Alignment(-0.3, 0.4),
-              child: Image.asset(
-                "assets/images/second_slide/lion.png",
-                scale: 1.5,
-              ),
+            AnimalItem(
+              imageName: "assets/images/second_slide/lion.png",
+              imageAlignment: const Alignment(-0.3, 0.4),
             ),
-            Align(
-              alignment: const Alignment(0.5, 0.4),
-              child: Image.asset(
-                "assets/images/second_slide/deer_two.png",
-                scale: 3,
-              ),
+            AnimalItem(
+              imageName: "assets/images/second_slide/deer_two.png",
+              imageAlignment: const Alignment(0.5, 0.4),
             ),
-            Align(
-              alignment: const Alignment(0, -0.7),
-              child: Image.asset(
-                "assets/images/second_slide/bat.png",
-                scale: 3,
-              ),
+            AnimalItem(
+              imageName: "assets/images/second_slide/bat.png",
+              imageAlignment: const Alignment(0, -0.7),
             ),
-            Align(
-              alignment: const Alignment(0.3, -0.4),
-              child: Image.asset(
-                "assets/images/second_slide/bat.png",
-                scale: 5,
-              ),
+            AnimalItem(
+              imageName: "assets/images/second_slide/bat.png",
+              imageAlignment: const Alignment(0.3, -0.4),
             ),
-            // Align(
-            //   alignment: const Alignment(0, -0.7),
-            //   child: Image.asset(
-            //     "assets/images/second_slide/bat.png",
-            //     scale: 3,
-            //   ),
-            // )
           ].animate(interval: 500.ms).fade(),
         ),
       ),

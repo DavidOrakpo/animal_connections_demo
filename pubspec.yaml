@@ -37,7 +37,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: ^5.1.0
   just_audio: ^0.9.34
+  youtube_player_iframe: ^4.0.4
   flutter_animate: ^4.2.0+1
+  flutter_riverpod: ^2.4.4
 
 dev_dependencies:
   flutter_test:
